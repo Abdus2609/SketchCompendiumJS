@@ -1,6 +1,5 @@
 import React from 'react';
 import "./App.css"
-import {Link} from 'react-router-dom';
 
 function Navbar() {
     var navLinks = document.getElementById("navLinks");
@@ -20,7 +19,7 @@ function Navbar() {
                     <img src={require('./logo/logo2.png')} alt=""/>
                 </a>
                 <div class="nav-links" id="navLinks">
-                    <i class="fa fa-times" onclick={hideMenu}></i>
+                    <i class="fa fa-times" onClick={hideMenu}></i>
                     <ul>
                         <li><a href="/">HOME</a></li>
                         <li><a href="/about">ABOUT</a></li>
@@ -28,7 +27,7 @@ function Navbar() {
                         <li><a href="/contact">CONTACT US</a></li>
                     </ul>
                 </div>
-                <i class="fa fa-bars" onclick={showMenu}></i>
+                <i class="fa fa-bars" onClick={showMenu}></i>
             </nav>
         </section>
     )

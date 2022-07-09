@@ -1,10 +1,5 @@
 import React from 'react';
 import "../App.css"
-// import {Link, Routes, Router, Route} from 'react-router-dom';
-// import Navbar from '../Navbar';
-// import About from './About';
-// import Posts from './Posts';
-// import Contact from './Contact';
 
 function Home() {
     window.addEventListener('scroll', reveal);
