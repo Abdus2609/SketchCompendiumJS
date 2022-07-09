@@ -2,14 +2,15 @@ import React from 'react';
 import "./App.css"
 
 function Navbar() {
-    var navLinks = document.getElementById("navLinks");
 
     function showMenu() {
-      navLinks.style.right = "0";
+        var navLinks = document.getElementById("navLinks");
+        navLinks.style.right = "0";
     }
   
     function hideMenu() {
-      navLinks.style.right = "-200px";
+        var navLinks = document.getElementById("navLinks");
+        navLinks.style.right = "-200px";
     }
 
     return (

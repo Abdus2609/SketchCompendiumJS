@@ -111,6 +111,10 @@ nav .fa {
 		font-size: 20px;
 	}
 
+	.nav-bar {
+		padding-bottom: 30px;
+	}
+
 	.nav-links ul li {
 		display: block;
 
@@ -287,7 +291,7 @@ p {
 }
 
 .about-col img {
-	width: 100%;
+	width: 80%;
 }
 
 .about-col h1 {
