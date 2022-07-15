@@ -1,5 +1,7 @@
-import React from 'react';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
+import { storage, firestore } from '../firebaseconfig';
 
 function Posts() {
     window.addEventListener('scroll', reveal);
@@ -20,6 +22,21 @@ function Posts() {
 	  		}
 	  	}
 	  }
+	
+	const [posts, setPosts] = useState([]);
+
+	const db = collection(firestore, "posts");
+
+	useEffect(() => {
+		onSnapshot(query(db), (snapshot) => {
+			const newPosts = [];
+			snapshot.forEach((doc) => {
+				newPosts.push(doc.data().url)
+			});
+
+			setPosts(newPosts)
+		})
+	});
 
     return (
         <div>
@@ -30,10 +47,26 @@ function Posts() {
             <section class="posts">
 		        <div class="posts-intro">
 		        	<h2>Have a look through these art pieces</h2>
-		        	{/* <p>If you find anything you like, feel free to click the artwork and use the details given to contact the artist.</p> */}
+		        	<p>If you find anything you like, feel free to use the details given to contact the artist.</p>
 		        </div>
 
-		        <div class="row">
+				{posts.map((url) => {
+					return (
+						<div class="row">
+							<div class="post">
+								<img src={url} alt="" />
+							</div>
+							<div class="post">
+								<img src={url} alt="" />
+							</div>
+							<div class="post">
+								<img src={url} alt="" />
+							</div>
+						</div>
+					)
+				})}
+
+		        {/* <div class="row">
 		        	<div class="post">
 		        		<img src={require("../images/eren_yeager.jpg" )} alt="" />
 		        	</div>
@@ -211,7 +244,7 @@ function Posts() {
 		        	<div class="post">
 		        		<img src={require("../images/gohan_ss2.JPG" )} alt="" />
 		        	</div>
-		        </div>
+		        </div> */}
 	        </section>
 
             <section class="footer">

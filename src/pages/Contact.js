@@ -8,7 +8,7 @@ function Contact() {
 		        <h1>Contact Us</h1>
 	        </section>
 
-            <section class="post-your-work">
+            {/* <section class="post-your-work">
 		        <h1>How to post your artwork:</h1>
 		        <div class="row">
 		        	<div class="step-col">
@@ -24,7 +24,7 @@ function Contact() {
 		        		<p>We will try and add your work to our site as soon as possible. Please be patient and we will let you know when it's up! Happy posting!</p>
 		        	</div>
 		        </div>
-	        </section>
+	        </section> */}
 
             <section class="location">
 		        <h1>We are based in...</h1>
@@ -44,7 +44,7 @@ function Contact() {
 					        <i class="fa fa-phone"></i>
 					        <span>
 						        <h5>Call us for any enquiries</h5>
-						        <p>+44 7778 787 933</p>
+						        <p>+44 123 4567 890</p>
 					        </span>
 				        </div>
 				        <div>

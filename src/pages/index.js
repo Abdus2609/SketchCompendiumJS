@@ -30,7 +30,7 @@ function Home() {
           <p>This is just a space for showcasing any and all art. We welcome all styles and genres. Have fun!</p>
           <a href="/posts" class="hero-btn">Click here to see some posts</a>
           <br />
-          <a href="/contact" class="hero-btn">Click here to post your first masterpiece</a>
+          <a href="/postform" class="hero-btn">Click here to post your first masterpiece</a>
         </div>
       </section>
 
@@ -74,7 +74,7 @@ function Home() {
 
       <section class="join">
 		    <h1>Start your artistic adventure here and upload<br />some of your work to be showcased</h1>
-		    <a href="/contact" class="hero-btn">CREATE A POST</a>
+		    <a href="/postform" class="hero-btn">CREATE A POST</a>
 	    </section>
     
 

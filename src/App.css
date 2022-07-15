@@ -474,3 +474,62 @@ p {
 	border: 1px solid #cab069;
 	box-sizing: border-box;
 }
+
+/* postform  */
+
+.postform-header {
+	min-height: 75vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url("./bg/fish.jpeg");
+	background-position: center;
+	background-size: cover;
+	text-align: center;
+	color: #fff;
+	transform: translateY(-20%);
+}
+
+.postform-header h1 {
+	margin-top: 100px;
+	padding-top: 15%;
+	font-size: 62px;
+}
+
+.postform-header p {
+	position: absolute;
+	right: 5;
+	bottom: 0
+}
+
+.postform {
+	width: 80%;
+	margin: auto;
+	/* padding-top: 80px; */
+	padding-bottom: 50px;
+}
+
+.postform-col {
+	flex-basis: 48%;
+	margin-bottom: 30px;
+}
+
+.postform-col h4 {
+	font-size: 24px;
+	margin: 10px;
+	margin-bottom: 10px;
+	font-weight: 400;
+}
+
+.postform-col p {
+	margin: 5px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.postform-col input, .postform-col textarea {
+	width: 100%;
+	padding: 15px;
+	margin-bottom: 17px;
+	outline: none;
+	border: 1px solid #cab069;
+	box-sizing: border-box;
+}
