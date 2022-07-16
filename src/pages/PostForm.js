@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { storage, firestore } from '../firebaseconfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { v4 } from "uuid";
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
 
 function PostForm() {
 
@@ -23,7 +23,9 @@ function PostForm() {
                     artName,
                     name,
                     email,
-                    url
+                    url,
+                    numLikes: 0,
+                    createdAt: Timestamp.now()
                 };
 
                 await addDoc(db, data).then(() => {

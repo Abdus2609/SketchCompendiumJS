@@ -1,7 +1,7 @@
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import { storage, firestore } from '../firebaseconfig';
+import { firestore } from '../firebaseconfig';
 
 function Posts() {
     window.addEventListener('scroll', reveal);
@@ -28,10 +28,15 @@ function Posts() {
 	const db = collection(firestore, "posts");
 
 	useEffect(() => {
-		onSnapshot(query(db), (snapshot) => {
+		onSnapshot(query(db, orderBy("createdAt", "desc")), (snapshot) => {
 			const newPosts = [];
 			snapshot.forEach((doc) => {
-				newPosts.push(doc.data().url)
+				newPosts.push({
+					artName: doc.data().artName,
+					name: doc.data().name,
+					email: doc.data().email,
+					url: doc.data().url,
+				})
 			});
 
 			setPosts(newPosts)
@@ -50,201 +55,26 @@ function Posts() {
 		        	<p>If you find anything you like, feel free to use the details given to contact the artist.</p>
 		        </div>
 
-				{posts.map((url) => {
+				{posts.map((post, index) => {
+
+					if (index % 3 !== 0) {
+						return <></>;
+					}
+
 					return (
 						<div class="row">
 							<div class="post">
-								<img src={url} alt="" />
+								<img src={post.url} alt="" />
 							</div>
 							<div class="post">
-								<img src={url} alt="" />
+								<img src={posts[index + 1].url} alt="" />
 							</div>
 							<div class="post">
-								<img src={url} alt="" />
+								<img src={posts[index + 2].url} alt="" />
 							</div>
 						</div>
 					)
 				})}
-
-		        {/* <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/eren_yeager.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/ichigo_2.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/kaneki.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/nezuko.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/rocklee_gaara.png" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/tanjiro_sun.png" )} alt="" />
-		        	</div>
-		        </div>		
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/bardock.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/goku_mui.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/gojo_2.JPG" )} alt="" />
-		        	</div>
-		        </div>		
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/superman.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/uzui.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/vegeta_goku.JPG" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/broly_ssj.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/grimmjow_ulqiorra.png" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/rengoku.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/aizen.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/akaza.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/batman_laughs.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/tanjiro.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/ulqiorra.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/zenitsu.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/kawashikki.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/pokemon.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/shanks.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/ban.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/borushiki.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/gojo.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/majin_vegeta.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/obito_kakashi.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/sukuna_3.jpg" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/gokublack.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/grimmjow.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/hashirama_madara.JPG" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/goku_ssj.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/goku_ssj3.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/goku_ssj4.JPG" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/broly_ss2.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/sukuna_2.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/ichigo.JPG" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/kakashi.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/naruto_sasuke.jpg" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/sukuna.JPG" )} alt="" />
-		        	</div>
-		        </div>
-
-		        <div class="row">
-		        	<div class="post">
-		        		<img src={require("../images/goku_ui.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/naruto_so6p.JPG" )} alt="" />
-		        	</div>
-		        	<div class="post">
-		        		<img src={require("../images/gohan_ss2.JPG" )} alt="" />
-		        	</div>
-		        </div> */}
 	        </section>
 
             <section class="footer">

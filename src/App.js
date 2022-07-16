@@ -5,7 +5,7 @@ import Posts from './pages/Posts';
 import Contact from './pages/Contact';
 import PostForm from './pages/PostForm';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 import Home from './pages';
 
 function App() {
