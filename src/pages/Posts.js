@@ -2,6 +2,7 @@ import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { firestore } from '../firebaseconfig';
+import Post from "../components/Post"
 
 function Posts() {
     window.addEventListener('scroll', reveal);
@@ -31,7 +32,6 @@ function Posts() {
 		onSnapshot(query(db, orderBy("createdAt", "desc")), (snapshot) => {
 			const newPosts = [];
 			snapshot.forEach((doc) => {
-				// newPosts.push(doc.data().url)
 				newPosts.push({
 					artName: doc.data().artName,
 					name: doc.data().name,
@@ -63,19 +63,30 @@ function Posts() {
 						return <></>;
 					}
 
-					const secondUrl = (index + 1 < length) ? posts[index + 1].url : ""
-					const thirdUrl = (index + 2 < length) ? posts[index + 2].url : ""
+					const secondPost = (index + 1 < length) ? 
+						{artName: posts[index + 1].artName, 
+						name: posts[index + 1].name, 
+						email: posts[index + 1].email, 
+						url: posts[index + 1].url} :
+						{artName: "", name: "", email: "", url: ""}
+
+					const thirdPost = (index + 2 < length) ? 
+						{artName: posts[index + 2].artName, 
+						name: posts[index + 2].name, 
+						email: posts[index + 2].email, 
+						url: posts[index + 2].url} :
+						{artName: "", name: "", email: "", url: ""}
 
 					return (
 						<div class="row">
 							<div class="post">
-								<img src={post.url} alt="" />
+								<Post artName={post.artName} name={post.name} email={post.email} url={post.url} />
 							</div>
 							<div class="post">
-								<img src={secondUrl} alt="" />
+								<Post artName={secondPost.artName} name={secondPost.name} email={secondPost.email} url={secondPost.url} />
 							</div>
 							<div class="post">
-								<img src={thirdUrl} alt="" />
+								<Post artName={thirdPost.artName} name={thirdPost.name} email={thirdPost.email} url={thirdPost.url} />
 							</div>
 						</div>
 					)
