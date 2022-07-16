@@ -31,11 +31,12 @@ function Posts() {
 		onSnapshot(query(db, orderBy("createdAt", "desc")), (snapshot) => {
 			const newPosts = [];
 			snapshot.forEach((doc) => {
+				// newPosts.push(doc.data().url)
 				newPosts.push({
 					artName: doc.data().artName,
 					name: doc.data().name,
 					email: doc.data().email,
-					url: doc.data().url,
+					url: doc.data().url
 				})
 			});
 
@@ -56,10 +57,14 @@ function Posts() {
 		        </div>
 
 				{posts.map((post, index) => {
+					const length = posts.length;
 
 					if (index % 3 !== 0) {
 						return <></>;
 					}
+
+					const secondUrl = (index + 1 < length) ? posts[index + 1].url : ""
+					const thirdUrl = (index + 2 < length) ? posts[index + 2].url : ""
 
 					return (
 						<div class="row">
@@ -67,10 +72,10 @@ function Posts() {
 								<img src={post.url} alt="" />
 							</div>
 							<div class="post">
-								<img src={posts[index + 1].url} alt="" />
+								<img src={secondUrl} alt="" />
 							</div>
 							<div class="post">
-								<img src={posts[index + 2].url} alt="" />
+								<img src={thirdUrl} alt="" />
 							</div>
 						</div>
 					)
