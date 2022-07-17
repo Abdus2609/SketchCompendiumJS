@@ -50,7 +50,7 @@ function Contact() {
 				        <div>
 					        <i class="fa fa-envelope-o"></i>
 					        <span>
-						        <h5>Email us to post your work!</h5>
+						        <h5>Email us for any enquiries</h5>
 						        <p>sketchcompendium@gmail.com</p>
 					        </span>
 				        </div>

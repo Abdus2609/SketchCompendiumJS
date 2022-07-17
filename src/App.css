@@ -217,6 +217,10 @@ p {
 	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
 }
 
+.post p {
+	padding: 1px;
+}
+
 
 .join {
 	margin: 100px auto;
@@ -532,4 +536,24 @@ p {
 	outline: none;
 	border: 1px solid #cab069;
 	box-sizing: border-box;
+}
+
+.like-button {
+	display: inline-block;
+	text-decoration: none;
+	padding: 10px 26px;
+	font-size: 13px;
+	position: relative;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	cursor: pointer;
+	border: 1px solid #cab069;
+	color: #cab069;
+	background: transparent;
+}
+
+.like-button:hover {
+	transition: 0.5s;
+	background: #cab069;
+	color: #fff;
 }

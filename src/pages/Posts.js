@@ -33,10 +33,12 @@ function Posts() {
 			const newPosts = [];
 			snapshot.forEach((doc) => {
 				newPosts.push({
+					id: doc.id,
 					artName: doc.data().artName,
 					name: doc.data().name,
 					email: doc.data().email,
-					url: doc.data().url
+					url: doc.data().url,
+					numLikes: doc.data().numLikes,
 				})
 			});
 
@@ -64,29 +66,35 @@ function Posts() {
 					}
 
 					const secondPost = (index + 1 < length) ? 
-						{artName: posts[index + 1].artName, 
+						{id: posts[index + 1].id,
+						artName: posts[index + 1].artName, 
 						name: posts[index + 1].name, 
 						email: posts[index + 1].email, 
-						url: posts[index + 1].url} :
-						{artName: "", name: "", email: "", url: ""}
+						url: posts[index + 1].url,
+						numLikes: posts[index + 1].numLikes} :
+						{id: "", artName: "", name: "", email: "", url: "", numLikes: -1}
 
 					const thirdPost = (index + 2 < length) ? 
-						{artName: posts[index + 2].artName, 
+						{id: posts[index + 2].id,
+						artName: posts[index + 2].artName, 
 						name: posts[index + 2].name, 
 						email: posts[index + 2].email, 
-						url: posts[index + 2].url} :
-						{artName: "", name: "", email: "", url: ""}
+						url: posts[index + 2].url,
+						numLikes: posts[index + 2].numLikes} :
+						{id: "", artName: "", name: "", email: "", url: "", numLikes: -1}
 
 					return (
 						<div class="row">
 							<div class="post">
-								<Post artName={post.artName} name={post.name} email={post.email} url={post.url} />
+								<Post id={post.id} artName={post.artName} name={post.name} email={post.email} url={post.url} numLikes={post.numLikes} />
 							</div>
 							<div class="post">
-								<Post artName={secondPost.artName} name={secondPost.name} email={secondPost.email} url={secondPost.url} />
+								<Post id={secondPost.id} artName={secondPost.artName} name={secondPost.name} email={secondPost.email} url={secondPost.url} 
+									numLikes={secondPost.numLikes} />
 							</div>
 							<div class="post">
-								<Post artName={thirdPost.artName} name={thirdPost.name} email={thirdPost.email} url={thirdPost.url} />
+								<Post id={thirdPost.id} artName={thirdPost.artName} name={thirdPost.name} email={thirdPost.email} url={thirdPost.url} 
+									numLikes={thirdPost.numLikes} />
 							</div>
 						</div>
 					)
