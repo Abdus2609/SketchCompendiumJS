@@ -1,5 +1,7 @@
-import React from 'react';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import "../App.css"
+import { firestore } from '../firebaseconfig';
 
 function Home() {
     window.addEventListener('scroll', reveal);
@@ -19,7 +21,23 @@ function Home() {
 	  			reveals[i].classList.remove('active');
 	  		}
 	  	}
-	  } 
+	  }
+
+    const [topPosts, setTopPosts] = useState([]);
+
+    const db = collection(firestore, "posts");
+
+    useEffect(() => {
+      onSnapshot(query(db, orderBy("numLikes", "desc")), (snapshot) => {
+        const newTopPosts = [];
+        snapshot.forEach((doc) => {
+          newTopPosts.push(doc.data().url)
+        })
+
+        const topNinePosts = newTopPosts.slice(0, 9);
+        setTopPosts(topNinePosts);
+      })
+    });
 
     return (
      <div>
@@ -39,35 +57,35 @@ function Home() {
         <p>Here are some of our popular posts. Post yours and you could be here too!</p>
         <div className="row">
           <div className="post">
-            <img src={require("../images/ichigo_2.jpg")} alt=""/>
+            <img src={topPosts[0]} alt=""/>
           </div>
           <div className="post">
-            <img src={require("../images/borushiki.jpg")} alt=""/>
+            <img src={topPosts[1]} alt=""/>
           </div>
           <div className="post">
-            <img src={require("../images/kaneki.jpg")} alt=""/>
-          </div>
-        </div>
-        <div className="row">
-          <div className="post">
-            <img src={require("../images/batman_laughs.jpg")} alt=""/>
-          </div>
-          <div className="post">
-            <img src={require("../images/eren_yeager.jpg")} alt=""/>
-          </div>
-          <div className="post">
-            <img src={require("../images/ulqiorra.JPG")} alt=""/>
+            <img src={topPosts[2]} alt=""/>
           </div>
         </div>
         <div className="row">
           <div className="post">
-            <img src={require("../images/sukuna_3.jpg")} alt=""/>
+            <img src={topPosts[3]} alt=""/>
           </div>
           <div className="post">
-            <img src={require("../images/tanjiro.jpg")} alt=""/>
+            <img src={topPosts[4]} alt=""/>
           </div>
           <div className="post">
-            <img src={require("../images/bardock.JPG")} alt=""/>
+            <img src={topPosts[5]} alt=""/>
+          </div>
+        </div>
+        <div className="row">
+          <div className="post">
+            <img src={topPosts[6]} alt=""/>
+          </div>
+          <div className="post">
+            <img src={topPosts[7]} alt=""/>
+          </div>
+          <div className="post">
+            <img src={topPosts[8]} alt=""/>
           </div>
         </div>				
       </section>
