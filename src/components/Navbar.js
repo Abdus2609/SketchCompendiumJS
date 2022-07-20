@@ -25,7 +25,7 @@ function Navbar() {
                         <li><a href="/">HOME</a></li>
                         <li><a href="/about">ABOUT</a></li>
                         <li><a href="/posts">POSTS</a></li>
-                        <li><a href="/postform">UPLOAD</a></li>
+                        <li><a href="/upload">UPLOAD</a></li>
                         <li><a href="/contact">CONTACT US</a></li>
                     </ul>
                 </div>

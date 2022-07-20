@@ -2,10 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { storage, firestore } from '../firebaseconfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { v4 } from "uuid";
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { v4 } from "uuid";
+import { useNavigate } from 'react-router-dom';
 
-function PostForm() {
+function Upload() {
 
     const [artName, setArtName] = useState('');
     const [name, setName] = useState('');
@@ -13,6 +14,8 @@ function PostForm() {
     const [image, setImage] = useState(null);
 
     const db = collection(firestore, "posts");
+
+    const navigate = useNavigate();
 
     const handlePost = () => {
         if (image == null) return;
@@ -34,18 +37,18 @@ function PostForm() {
                     setEmail('');
                     setImage(null);
 
-                    alert("Post uploaded.")
+                    alert("Post uploaded.");
+                    navigate("/posts");
                 });
             });
         });
-
     }
 
     return (
         <div>
             <section className='postform-header'>
                 <h1>Upload Post</h1>
-                <p>Artist: Scarlet Xiao Jiabao Garbo DV Supreme Crimson Dingo</p>
+                <p><strong>Artist:</strong> Scarlet Xiao Jiabao Garbo DV Supreme Crimson Dingo</p>
             </section>
 
             <section className='postform'>
@@ -74,10 +77,11 @@ function PostForm() {
                             required />
                         <button class='hero-btn gold-btn' onClick={handlePost}>Post</button>
                     </div>
+                    <p><strong>NOTE:</strong> After pressing Post, please wait until a notification confirms your upload before doing anything else</p>
                 </div>
             </section>
         </div>
     )
 }
 
-export default PostForm;
+export default Upload;

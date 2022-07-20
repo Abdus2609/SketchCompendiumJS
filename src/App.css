@@ -52,7 +52,7 @@ nav img {
 	content: '';
 	width: 0%;
 	height: 2px;
-	background: #CAB069;
+	background: #cab069;
 	display: block;
 	margin: auto;
 	transition: 0.5s;
@@ -282,6 +282,13 @@ p {
 	font-size: 62px;
 }
 
+@media (max-width: 700px) {
+
+	.about-header {
+		background-size: contain;
+	}
+}
+
 .about-us {
 	width: 80%;
 	margin: auto;
@@ -343,6 +350,13 @@ p {
 	font-size: 62px;
 }
 
+@media (max-width: 700px) {
+
+	.posts-header {
+		background-size: contain;
+	}
+}
+
 .posts {
 	width: 80%;
 	margin: auto;
@@ -378,6 +392,13 @@ p {
 	margin-top: 100px;
 	padding-top: 15%;
 	font-size: 62px;
+}
+
+@media (max-width: 700px) {
+
+	.contact-header {
+		background-size: contain;
+	}
 }
 
 .post-your-work h1 {
@@ -502,6 +523,21 @@ p {
 	position: absolute;
 	right: 5;
 	bottom: 0
+}
+
+@media (max-width: 700px) {
+
+	.postform-header {
+		background-size: contain;
+	}
+
+	.postform-header h1 {
+		font-size: 60px;
+	}
+
+	.postform-header p {
+		font-size: 12px;
+	}
 }
 
 .postform {
